@@ -28,12 +28,12 @@ bool HelloWorld::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	//Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	//¼ÓÈëÓÎÏ·±³¾°
+	//åŠ å…¥æ¸¸æˆèƒŒæ™¯
 	auto layerColorBG = cocos2d::LayerColor::create(cocos2d::Color4B(180, 170, 160, 255));
 	this->addChild(layerColorBG);
 
-	//ÔÚÉÏ·½¼ÓÈëÓÎÏ·µÄ·ÖÊı
-	auto labTTFCardNumberName = LabelTTF::create("score", "HirakakuProN-W6", 80);
+	//åœ¨ä¸Šæ–¹åŠ å…¥æ¸¸æˆçš„åˆ†æ•°
+	auto labTTFCardNumberName = LabelTTF::create("sorce", "HirakakuProN-W6", 80);
 	labTTFCardNumberName->setPosition(Point(visibleSize.width-350, visibleSize.height - 150));
 	addChild(labTTFCardNumberName);
 
@@ -41,7 +41,7 @@ bool HelloWorld::init()
 	labTTFCardNumber->setPosition(Point(visibleSize.width - 150, visibleSize.height - 150));
 	addChild(labTTFCardNumber);
 
-	//ÓÎÏ·µÄÊÖÊÆÊ¶±ğµÄ¼àÌıÊÂ¼ş£¬½øĞĞ°ó¶¨
+	//æ¸¸æˆçš„æ‰‹åŠ¿è¯†åˆ«çš„ç›‘å¬äº‹ä»¶ï¼Œè¿›è¡Œç»‘å®š
 	auto touchListener = EventListenerTouchOneByOne::create();
 	touchListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
 	touchListener->onTouchEnded = CC_CALLBACK_2(HelloWorld::onTouchEnded, this);
@@ -49,22 +49,22 @@ bool HelloWorld::init()
 	//Director::getInstance()->getEventDispatcher()->
 	//	addEventListenerWithSceneGraphPriority(touchListener, this);
 
-	//µ÷ÓÃÉú³É¿¨Æ¬µÄ·½·¨
+	//è°ƒç”¨ç”Ÿæˆå¡ç‰‡çš„æ–¹æ³•
 	createCardSprite(visibleSize);
 
-	//µ÷ÓÃÉú³ÉËæ»úÊı
+	//è°ƒç”¨ç”Ÿæˆéšæœºæ•°
 	autoCreateCardNumber();
 	autoCreateCardNumber();
 
 	return true;
 }
 
-//´´½¨¿¨Æ¬
+//åˆ›å»ºå¡ç‰‡
 void HelloWorld::createCardSprite(cocos2d::Size size)
-{//Çó³öµ¥Ôª¸ñµÄ¿í¶ÈºÍ¸ß¶È
+{//æ±‚å‡ºå•å…ƒæ ¼çš„å®½åº¦å’Œé«˜åº¦
 	int lon = (size.width - 28) / 8;
 
-	//4*4µÄµ¥Ôª¸ñ
+	//4*4çš„å•å…ƒæ ¼
 	for (int j = 0; j < 4; j++)
 	{
 		for (int i = 0; i < 4; i++) 
@@ -72,13 +72,13 @@ void HelloWorld::createCardSprite(cocos2d::Size size)
 			CardSprite *card = CardSprite::createCardSprite(0, lon, lon, lon*j + 20, lon*i + 20 + size.height / 6);
 			addChild(card);
 
-			//Ìí¼Ó¿¨Æ¬µ½¶şÎ¬Êı×éÖĞ
+			//æ·»åŠ å¡ç‰‡åˆ°äºŒç»´æ•°ç»„ä¸­
 			cardArr[j][i] = card;
 		}
 	}
 }
 
-//ÓÎÏ·ÊÇ·ñ¼ÌĞøÏÂÈ¥
+//æ¸¸æˆæ˜¯å¦ç»§ç»­ä¸‹å»
 void HelloWorld::doCheckGameOver()
 {
 	bool isGameOver = true;
@@ -104,26 +104,26 @@ void HelloWorld::doCheckGameOver()
 	}
 }
 
-//×Ô¶¯Éú³É¿¨Æ¬Êı×Ö
+//è‡ªåŠ¨ç”Ÿæˆå¡ç‰‡æ•°å­—
 void HelloWorld::autoCreateCardNumber()
 {
-	int i = CCRANDOM_0_1() * 4;//0~3Î»ÖÃµÄÖµ
+	int i = CCRANDOM_0_1() * 4;//0~3ä½ç½®çš„å€¼
 	int j = CCRANDOM_0_1() * 4;
 
-	//ÅĞ¶ÏÊÇ·ñÊÇÒÑ¾­´æÔÚµÄÎ»ÖÃ
+	//åˆ¤æ–­æ˜¯å¦æ˜¯å·²ç»å­˜åœ¨çš„ä½ç½®
 	if (cardArr[i][j]->getNumber() > 0)
 	{
 		autoCreateCardNumber();
 	}
 else
 {
-	cardArr[i][j]->setNumber(CCRANDOM_0_1() * 10 < 1 ? 4:2);//¸ÅÂÊÊÇÒ»±È¾Å
+	cardArr[i][j]->setNumber(CCRANDOM_0_1() * 10 < 1 ? 4:2);//æ¦‚ç‡æ˜¯ä¸€æ¯”ä¹
 }
 
 
 }
 
-//¼ÓÈëÊÖÊÆÊ¶±ğµÄÊÂ¼ş
+//åŠ å…¥æ‰‹åŠ¿è¯†åˆ«çš„äº‹ä»¶
 bool HelloWorld::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event)
 {
 	auto touchPO = touch->getLocation();
@@ -141,12 +141,12 @@ void HelloWorld::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_even
 	endY = firstY - touchPO.y;
 
 	if (abs(endX) > abs(endY))
-	{//×óÓÒ
+	{//å·¦å³
 		if (endX + 5 > 0)
-		{//×ó±ß
+		{//å·¦è¾¹
 			if (doLeft())
 			{
-				//µ÷ÓÃÉú³ÉËæ»úÊı
+				//è°ƒç”¨ç”Ÿæˆéšæœºæ•°
 				autoCreateCardNumber();
 				doCheckGameOver();
 			}
@@ -155,19 +155,19 @@ void HelloWorld::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_even
 		{
 			if (doRight())
 			{
-				//µ÷ÓÃÉú³ÉËæ»úÊı
+				//è°ƒç”¨ç”Ÿæˆéšæœºæ•°
 				autoCreateCardNumber();
 				doCheckGameOver();
 			}
 		}
 	}
 	else
-	{//ÉÏÏÂ
+	{//ä¸Šä¸‹
 		if (endY + 5 > 0)
 		{
 			if (doDown())
 			{
-				//µ÷ÓÃÉú³ÉËæ»úÊı
+				//è°ƒç”¨ç”Ÿæˆéšæœºæ•°
 				autoCreateCardNumber();
 				doCheckGameOver();
 			}
@@ -176,7 +176,7 @@ void HelloWorld::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_even
 		{
 			if (doUp())
 			{
-				//µ÷ÓÃÉú³ÉËæ»úÊı
+				//è°ƒç”¨ç”Ÿæˆéšæœºæ•°
 				autoCreateCardNumber();
 				doCheckGameOver();
 			}
@@ -184,7 +184,7 @@ void HelloWorld::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_even
 	}
 	
 }
-//ÉÏÏÂ×óÓÒµÄ·½·¨
+//ä¸Šä¸‹å·¦å³çš„æ–¹æ³•
 bool HelloWorld::doLeft()
 {
 	bool isdo = false;
@@ -210,7 +210,7 @@ bool HelloWorld::doLeft()
 						cardArr[x][y]->setNumber(cardArr[x][y]->getNumber() * 2);
 						cardArr[x1][y]->setNumber(0);
 
-						//ÉèÖÃ·ÖÊı
+						//è®¾ç½®åˆ†æ•°
 						score += cardArr[x][y]->getNumber();
 						labTTFCardNumber->setString(__String::createWithFormat("%i", score)->getCString());
 
@@ -251,7 +251,7 @@ bool HelloWorld::doRight()
 						cardArr[x][y]->setNumber(cardArr[x][y]->getNumber() * 2);
 						cardArr[x1][y]->setNumber(0);
 
-						//ÉèÖÃ·ÖÊı
+						//è®¾ç½®åˆ†æ•°
 						score += cardArr[x][y]->getNumber();
 						labTTFCardNumber->setString(__String::createWithFormat("%i", score)->getCString());
 
@@ -292,7 +292,7 @@ bool HelloWorld::doUp()
 						cardArr[x][y]->setNumber(cardArr[x][y]->getNumber() * 2);
 						cardArr[x][y1]->setNumber(0);
 
-						//ÉèÖÃ·ÖÊı
+						//è®¾ç½®åˆ†æ•°
 						score += cardArr[x][y]->getNumber();
 						labTTFCardNumber->setString(__String::createWithFormat("%i", score)->getCString());
 
@@ -333,7 +333,7 @@ bool HelloWorld::doDown()
 						cardArr[x][y]->setNumber(cardArr[x][y]->getNumber() * 2);
 						cardArr[x][y1]->setNumber(0);
 
-						//ÉèÖÃ·ÖÊı
+						//è®¾ç½®åˆ†æ•°
 						score += cardArr[x][y]->getNumber();
 						labTTFCardNumber->setString(__String::createWithFormat("%i", score)->getCString());
 
