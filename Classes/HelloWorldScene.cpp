@@ -33,7 +33,7 @@ bool HelloWorld::init()
 	this->addChild(layerColorBG);
 
 	//在上方加入游戏的分数
-	auto labTTFCardNumberName = LabelTTF::create("sorce", "HirakakuProN-W6", 80);
+	auto labTTFCardNumberName = LabelTTF::create("score", "HirakakuProN-W6", 80);
 	labTTFCardNumberName->setPosition(Point(visibleSize.width-350, visibleSize.height - 150));
 	addChild(labTTFCardNumberName);
 
