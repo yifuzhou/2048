@@ -3,7 +3,7 @@
 USING_NS_CC;
 
 CardSprite *CardSprite::createCardSprite(int numbers, int wight, int height, float CardSpriteX, float CardSpriteY)
-{//Ä£°åÀàĞÍ£¬±Ø²»¿ÉÉÙµÄ´úÂë
+{//æ¨¡æ¿ç±»å‹ï¼Œå¿…ä¸å¯å°‘çš„ä»£ç 
 	CardSprite *enemy = new CardSprite();
 	if (enemy && enemy->init())
 	{
@@ -31,7 +31,7 @@ void CardSprite::setNumber(int num)
 {
 	number = num;
 
-	//ÅĞ¶ÏÊı×ÖµÄ´óĞ¡À´µ÷Õû×ÖÌåµÄ´óĞ¡
+	//åˆ¤æ–­æ•°å­—çš„å¤§å°æ¥è°ƒæ•´å­—ä½“çš„å¤§å°
 	if (number >= 0)
 	{
 		labTTFCardNumber->setFontSize(100);
@@ -49,7 +49,7 @@ void CardSprite::setNumber(int num)
 		labTTFCardNumber->setFontSize(40);
 	}
 
-	//ÅĞ¶ÏÊı×ÖµÄ´óĞ¡À´µ÷ÕûÑÕÉ«
+	//åˆ¤æ–­æ•°å­—çš„å¤§å°æ¥è°ƒæ•´é¢œè‰²
 	if (number == 0)
 	{
 		layerColorBG->setColor(cocos2d::Color3B(200, 190, 180));
@@ -98,7 +98,7 @@ void CardSprite::setNumber(int num)
 	{
 		layerColorBG->setColor(cocos2d::Color3B(0, 150, 0));
 	}
-	//¸üĞÂÏÔÊ¾µÄÊı×Ö
+	//æ›´æ–°æ˜¾ç¤ºçš„æ•°å­—
 	if (number > 0)
 	{
 		labTTFCardNumber->setString(__String::createWithFormat("%i", number)->getCString());
@@ -111,24 +111,24 @@ void CardSprite::setNumber(int num)
 
 void CardSprite::enemyInit(int numbers, int wight, int height, float CardSpriteX, float CardSpriteY)
 {
-	//³õÊ¼»¯Êı×Ö
+	//åˆå§‹åŒ–æ•°å­—
 	number = numbers;
 
-	//¼ÓÈëÓÎÏ·¿¨Æ¬µÄ±³¾°ÑÕÉ«
+	//åŠ å…¥æ¸¸æˆå¡ç‰‡çš„èƒŒæ™¯é¢œè‰²
 	layerColorBG = cocos2d::LayerColor::create(Color4B(200, 190, 180, 255), wight - 15, height - 15);
 	layerColorBG->setPosition(Vec2(CardSpriteX, CardSpriteY));
 
-	//ÅĞ¶ÏÈç¹û²»µÈÓÚ0¾ÍÏÔÊ¾£¬·ñÔòÎª¿Õ
+	//åˆ¤æ–­å¦‚æœä¸ç­‰äº0å°±æ˜¾ç¤ºï¼Œå¦åˆ™ä¸ºç©º
 	if (number > 0)
 	{
-		//¼ÓÈëÖĞ¼ä×ÖÌå
+		//åŠ å…¥ä¸­é—´å­—ä½“
 		labTTFCardNumber = cocos2d::LabelTTF::create(__String::createWithFormat("%i", number)->getCString(), "HirakakuProN-W6", 100);
 		labTTFCardNumber->setPosition(Vec2(layerColorBG->getContentSize().width / 2, layerColorBG->getContentSize().height / 2));
 		layerColorBG->addChild(labTTFCardNumber);
 	}
 	else
 	{
-		//¼ÓÈëÖĞ¼ä×ÖÌå
+		//åŠ å…¥ä¸­é—´å­—ä½“
 		labTTFCardNumber = cocos2d::LabelTTF::create("", "HirakakuProN-W6", 100);
 		labTTFCardNumber->setPosition(Vec2(layerColorBG->getContentSize().width / 2, layerColorBG->getContentSize().height / 2));
 		layerColorBG->addChild(labTTFCardNumber);
@@ -140,7 +140,7 @@ void CardSprite::enemyInit(int numbers, int wight, int height, float CardSpriteX
 
 
 
-//»ñÈ¡Êı×Ö
+//è·å–æ•°å­—
 int CardSprite::getNumber()
 {
 	return number;
